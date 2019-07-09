@@ -63,10 +63,7 @@ public class Bot extends TelegramLongPollingBot {
             }else
             if (message.getText().equals("/start")){
                 start(message);
-            }else
-            if (message.getText().equals("/setting")){
-                sendMsg(message, "Что настроим?");
-            }
+            }//Тест git
             else {
                 sendMsg(message, yaApi(message.getText()));
 

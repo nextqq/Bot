@@ -77,10 +77,34 @@ public class Bot extends TelegramLongPollingBot {
             if (call_data.equals("go_start")) {
                 startres(update.getCallbackQuery());
             }
+            if (call_data.equals("info_msg_text")) {
+                infomenu(update.getCallbackQuery());
+            }
 
         }
     }
 
+
+    public void infomenu(CallbackQuery callbackQuery){
+
+        InlineKeyboardMarkup markupInline = new InlineKeyboardMarkup();
+        List<List<InlineKeyboardButton>> rowsInline = new ArrayList<List<InlineKeyboardButton>>();
+        List<InlineKeyboardButton> rowLine = new ArrayList<InlineKeyboardButton>();
+        rowLine.add(new InlineKeyboardButton().setText("Назад  <---").setCallbackData("go_start"));
+        rowsInline.add(rowLine);
+        markupInline.setKeyboard(rowsInline);
+        EditMessageText new_Message = new EditMessageText()
+                .setChatId(callbackQuery.getMessage().getChatId())
+                .setMessageId(callbackQuery.getMessage().getMessageId())
+                .setText("Данный бот предназначен для перевода текста с помощью Яндекс переводчика!")
+                .setReplyMarkup(markupInline);
+
+        try {
+            execute(new_Message); // Sending our message object to user
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void setingMenu(CallbackQuery callbackQuery){
 

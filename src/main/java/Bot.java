@@ -5,6 +5,7 @@ import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
 import org.telegram.telegrambots.meta.api.objects.Message;
+import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiRequestException;
@@ -63,7 +64,18 @@ public class Bot extends TelegramLongPollingBot {
             }else
             if (message.getText().equals("/start")){
                 start(message);
-            }//Тест git
+            }else
+            if (message.getText().equals("/test")){
+                //sendMsg(message, Integer.toString(JavaToMySQL.main()));
+                //sendMsg(message, message.toString());
+//                System.out.println(message.getForwardSenderName() + "\n" +
+//                        message.getFrom()+ "\n" +
+//                        message.getChatId()+ "\n" +
+//                        message.getChat());
+                //User us = message.getFrom();
+                //System.out.println(us.toString());
+                Users.startUser(message.getFrom());
+            }
             else {
                 sendMsg(message, yaApi(message.getText()));
 
